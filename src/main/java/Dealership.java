@@ -16,7 +16,32 @@ public class Dealership {
         return stocklist;
     }
 
-    public Double getTill() {
+    public double getTill() {
         return till;
+    }
+
+    public void addToStockList(Vehicle vehicle) {
+        stocklist.add(vehicle);
+    }
+
+    public void removeFromStockList(Vehicle vehicle) {
+        stocklist.remove(vehicle);
+    }
+
+    public void buyCar(Vehicle car) {
+        if(this.getTill() > car.getPrice()){
+            this.addToStockList(car);
+            this.till = this.getTill() - car.getPrice();
+        }
+    }
+
+    public void addToTill(Vehicle vehicle){
+        this.till = this.getTill() + vehicle.getPrice();
+    }
+
+    public void sellCar(Vehicle vehicle, Customer customer) {
+        customer.buyCar(vehicle);
+        this.removeFromStockList(vehicle);
+        this.addToTill(vehicle);
     }
 }

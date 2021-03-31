@@ -16,7 +16,19 @@ public class Customer {
         return ownedVehicles;
     }
 
-    public Double getMoney() {
+    public double getMoney() {
         return money;
     }
+
+    public void addCarToCollection(Vehicle vehicle) {
+        this.ownedVehicles.add(vehicle);
+    }
+
+    public void buyCar(Vehicle car) {
+         if(this.getMoney() > car.getPrice()){
+             this.addCarToCollection(car);
+             this.money = this.getMoney() - car.getPrice();
+         }
+    }
+
 }
